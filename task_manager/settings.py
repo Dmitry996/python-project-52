@@ -36,7 +36,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '0.0.0.0',
-    'https://task-manager-bt2o.onrender.com',
+    'task-manager-bt2o.onrender.com',
 ]
 
 
@@ -91,7 +91,6 @@ DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('DATABASES_URL'),
         conn_max_age=600,
-        conn_health_checks=True,
     )
 }
 
