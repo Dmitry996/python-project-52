@@ -1,6 +1,6 @@
 {% load django_bootstrap5 %}
-{% load i18n %}
 {% load static %}
+{% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
 <!doctype html>
@@ -10,11 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% trans "Task manager" %}</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/navbars/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-
     <link href="{% static 'styles.css' %}" rel="stylesheet">
   </head>
   <body>
@@ -72,6 +68,8 @@
     {% include "navbar.html" %}
     {% block content %}{% endblock %}
   </main>
+    {% include "footer.html" %}
+  <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
   </body>
 </html>
 

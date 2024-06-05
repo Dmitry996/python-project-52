@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 15:21+0000\n"
+"POT-Creation-Date: 2024-06-05 03:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,18 +20,42 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/templates/base.html:11 task_manager/templates/navbar.html:11
+#: task_manager/templates/base.html:12 task_manager/templates/navbar.html:12
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/navbar.html:15
+#: task_manager/templates/navbar.html:15 task_manager/templates/users.html:7
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/navbar.html:18
+#: task_manager/templates/navbar.html:19
 msgid "Input"
-msgstr ""
+msgstr "Вход"
 
-#: task_manager/templates/navbar.html:21
-msgid "reg"
-msgstr ""
+#: task_manager/templates/navbar.html:22
+msgid "Registration"
+msgstr "Регистрация"
+
+#: task_manager/templates/navbar.html:27
+msgid "Language"
+msgstr "Язык"
+
+#: task_manager/templates/users.html:16
+msgid "Last name"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/users.html:17
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/templates/users.html:18
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: task_manager/templates/users.html:30
+msgid "Change"
+msgstr "Изменить"
+
+#: task_manager/templates/users.html:32
+msgid "Delete"
+msgstr "Удалить"

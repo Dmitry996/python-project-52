@@ -1,10 +1,4 @@
-body {
-  padding-bottom: 20px;
-}
 
-.navbar {
-  margin-bottom: 20px;
-}
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -80,4 +74,16 @@ body {
 
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
+}
+
+body {
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+a.no-underline {
+  text-decoration: none;
 }

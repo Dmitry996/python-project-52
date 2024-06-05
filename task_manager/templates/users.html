@@ -1,24 +1,49 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load i18n %}
 
 {% block content %}
+
+<style>
+  a.no-underline {
+  text-decoration: none;
+}
+</style>
+
 <section class="py-5 text-center container">
-<div class="container">
-    <div class="card">
-        <div class="card-body p-5 bg-body-secondary">
-            <ul>
-                {%for user in users %}
-                <li>{{user}}</li>
-                {% endfor%}
-            </ul>
-        </div>
+<h1 class="d-lg-flex">{% trans 'Users' %}</h1>
+
+<div class="bd-example-snippet bd-code-snippet">
+    <div class="bd-example m-0 border-0">
+      
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">{% trans 'Last name' %}</th>
+              <th scope="col">{% trans 'Full name' %}</th>
+              <th scope="col">{% trans 'Creation date' %}</th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+            <tr>
+              <th scope="row">{{ user.id }}</th>
+              <td>{{  user.name }}</td>
+              <td>{{ user.f_name }}</td>
+              <td>{{ user.date }}</td>
+              <td>
+                  <a class="badge bg-warning-subtle text-warning-emphasis rounded-pill no-underline" href="{% url 'users' %}">{% trans "Change" %}</a>
+                  <br>
+                  <a class="badge bg-danger-subtle text-danger-emphasis rounded-pill no-underline" href="{% url 'users' %}">{% trans "Delete"%}</a>
+              </td>
+            </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          
     </div>
-</div>
+  </div>
 </section>
 {% endblock %}
-
-<ul class="dropdown-menu">
-    <li><input type="hidden" name="next" value="{{ request.path }}" /></li>
-    <li><input class="form-control" type="submit" value="English" name="language" lang="en" /></li>
-    <li><input class="form-control" type="submit" value="Русский" name="language" lang="ru" /></li>
-  </ul>
