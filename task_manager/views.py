@@ -19,16 +19,3 @@ class Users(TemplateView):
 
         context['users'] = users_1
         return context
-
-
-def set_language(request):
-    next = request.GET.get('next', '')
-    language = request.GET.get('language', '')
-    print(language)
-    if language == "English":
-        lang = 'en'
-    else:
-        lang = 'ru'
-    activate(lang)
-    response = redirect(next)
-    return response

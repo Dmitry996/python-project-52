@@ -23,5 +23,5 @@ urlpatterns = [
     path('', views.Index.as_view(template_name='index.html'), name='home'),
     path('users/', views.Users.as_view(template_name='users.html'), name='users'),
     path('admin/', admin.site.urls),
-    path('setlang/', views.set_language, name='set_language'),
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
