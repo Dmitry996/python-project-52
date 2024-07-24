@@ -12,10 +12,10 @@
           <div class="d-lg-flex justify-content-lg-end">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{% trans "Language" %}</a>
               <ul class="dropdown-menu">
-                <form action="{% url 'set_language' %}" method="get">
-                  <li><input type="hidden" name="next" value="{{ request.path }}" /></li>
-                  <li><input class="form-control" type="submit" value="English" name="language" lang="en" /></li>
-                  <li><input class="form-control" type="submit" value="Русский" name="language" lang="ru" /></li>
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                  <input name="next" type="hidden" value="{{ redirect_to }}">
+                  <li><input class="form-control" type="submit" value="en" name="language" lang="en" /></li>
+                  <li><input class="form-control" type="submit" value="ru" name="language" lang="ru" /></li>
                 </form>
               </ul>
           </div>
@@ -27,3 +27,4 @@
     </footer>
   </div>
   {% endblock %}
+  

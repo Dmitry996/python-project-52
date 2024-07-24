@@ -87,3 +87,38 @@ body {
 a.no-underline {
   text-decoration: none;
 }
+
+.form-signin {
+  max-width: 660px;
+  padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="up"] {
+  margin-bottom: 0px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="center"] {
+  margin-bottom: 0px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin input[type="bottom"] {
+  margin-bottom: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin input[type="separate"] {
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+}

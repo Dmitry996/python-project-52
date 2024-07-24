@@ -27,16 +27,19 @@
             </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for user in object_list %}
             <tr>
               <th scope="row">{{ user.id }}</th>
-              <td>{{  user.name }}</td>
-              <td>{{ user.f_name }}</td>
-              <td>{{ user.date }}</td>
+              <td>{{  user.username }}</td>
+              <td>{{ user.first_name }} {{ user.last_name }}</td>
+              <td>{{ user.date_joined }}</td>
               <td>
-                  <a class="badge bg-warning-subtle text-warning-emphasis rounded-pill no-underline" href="{% url 'users' %}">{% trans "Change" %}</a>
-                  <br>
-                  <a class="badge bg-danger-subtle text-danger-emphasis rounded-pill no-underline" href="{% url 'users' %}">{% trans "Delete"%}</a>
+                <form action="{% url 'update_user' pk=user.id %}">
+                  <button type="submit" class="badge bg-warning-subtle text-warning-emphasis rounded-pill no-underline">{% trans 'Change' %}</button>
+                </form>
+                <form action="{% url 'delete_user' pk=user.id %}">
+                  <button type="submit" class="badge bg-danger-subtle text-danger-emphasis rounded-pill no-underline">{% trans 'Delete' %}</button>
+                </form>
               </td>
             </tr>
                 {% endfor %}

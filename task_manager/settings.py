@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 import dj_database_url
-import django_bootstrap5
-import whitenoise
-
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -30,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
     'webserver',
@@ -40,7 +37,7 @@ ALLOWED_HOSTS = [
     'task-manager-bt2o.onrender.com',
 ]
 
-
+AUTH_USER_MODEL = 'users.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'task_manager',
+    'task_manager.users',
+    'task_manager.statuses',
+    'task_manager.tasks',
 ]
 
 MIDDLEWARE = [
@@ -64,8 +64,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -99,7 +97,13 @@ DATABASES = {
     )
 }
 
-
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

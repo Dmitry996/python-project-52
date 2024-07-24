@@ -1,21 +1,16 @@
-from django.views.generic import TemplateView
-from django.shortcuts import redirect
-from django.utils.translation import activate
+from django.contrib.auth import views
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 
-class Index(TemplateView):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+class LoginView(SuccessMessageMixin, views.LoginView):
+    template_name = 'form.html'
+    extra_context = {'title': _('Login'), 'button': _('Login')}
+    next_page = reverse_lazy('home')
+    success_message = _('Successfully login')
 
 
-class Users(TemplateView):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        users_1 = [{'id': 1, 'name': 'name_1', 'f_name': 'fname_1', 'date': '2022-01-01'},
-                   {'id': 2, 'name': 'name_2', 'f_name': 'fname_2', 'date': '2023-01-01'},
-                   {'id': 3, 'name': 'name_3', 'f_name': 'fname_3', 'date': '2024-01-01'},
-                   ]
-
-        context['users'] = users_1
-        return context
+class LogoutView(SuccessMessageMixin, views.LogoutView):
+    next_page = reverse_lazy('home')
+    success_message = _('Successfully logout')
