@@ -4,36 +4,37 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
 from django.contrib import messages
 from django.shortcuts import redirect
-from task_manager.utils import PermissionMixin
+from task_manager.mixins import PermissionMixin
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 from .models import Statuse
 from .forms import StatusForm
 
 
-class StatusesView(PermissionMixin, LoginRequiredMixin, SuccessMessageMixin):
+class StatusesMixin(PermissionMixin, LoginRequiredMixin, SuccessMessageMixin):
     model = Statuse
-    form_class = StatusForm
     success_url = reverse_lazy('statuses')
 
 
-class ListStatusesView(StatusesView, ListView):
+class ListStatusesView(StatusesMixin, ListView):
     template_name = 'statuses/statuses.html'
 
 
-class CreateStatusView(StatusesView, CreateView):
-    extra_context = {'title': _('Statuses'), 'button': _('Create')}
+class CreateStatusView(StatusesMixin, CreateView):
+    form_class = StatusForm
+    extra_context = {'title': _('Create status'), 'button': _('Create')}
     template_name = 'form.html'
     success_message = _('Status successfully created')
 
 
-class UpdateStatusView(StatusesView, UpdateView):
+class UpdateStatusView(StatusesMixin, UpdateView):
+    form_class = StatusForm
     template_name = 'form.html'
-    extra_context = {'title': _('Statuses'), 'button': _('Change')}
+    extra_context = {'title': _('Update status'), 'button': _('Change')}
     success_message = _('Status successfully changed')
 
 
-class DeleteStatusView(StatusesView, DeleteView):
+class DeleteStatusView(StatusesMixin, DeleteView):
     template_name = 'statuses/delete.html'
 
     def post(self, request, *args, **kwargs):
@@ -48,6 +49,6 @@ class DeleteStatusView(StatusesView, DeleteView):
         except ProtectedError:
             messages.error(
                 self.request,
-                _("It is not possible to delete the status because it is in use")  
+                _("It is not possible to delete the status because it is in use")
             )
             return redirect(reverse_lazy('statuses'))

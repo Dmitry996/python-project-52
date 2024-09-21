@@ -4,7 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from .forms import UserForm
 from django.contrib.auth import get_user_model
-from task_manager.utils import UserAccessMixin
+from task_manager.mixins import UserAccessMixin
 
 
 class UsersView(SuccessMessageMixin):

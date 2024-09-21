@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+
+<style>
+  a.no-underline {
+  text-decoration: none;
+}
+</style>
+
+<section class="py-5 text-center container">
+<h1 class="d-lg-flex">{% trans 'Labels' %}</h1>
+<a href="{% url 'create_label' %}" class="btn btn-outline-success">{% trans 'Create label' %}</a>
+<div class="bd-example-snippet bd-code-snippet">
+    <div class="bd-example m-0 border-0">
+      
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">{% trans 'Name' %}</th>
+              <th scope="col">{% trans 'Creation date' %}</th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for label in object_list %}
+            <tr>
+              <th scope="row">{{ label.id }}</th>
+              <td>{{ label.name }}</td>
+              <td>{{ label.created_at }}</td>
+              <td>
+                <form action="{% url 'update_label' pk=label.id %}">
+                  <button type="submit" class="badge bg-warning-subtle text-warning-emphasis rounded-pill no-underline">{% trans 'Change' %}</button>
+                </form>
+                <form action="{% url 'delete_label' pk=label.id %}">
+                  <button type="submit" class="badge bg-danger-subtle text-danger-emphasis rounded-pill no-underline">{% trans 'Delete' %}</button>
+                </form>
+              </td>
+            </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          
+    </div>
+  </div>
+</section>
+{% endblock %}

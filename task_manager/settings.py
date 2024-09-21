@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'task_manager.users',
     'task_manager.statuses',
     'task_manager.tasks',
+    'task_manager.labels',
 ]
 
 MIDDLEWARE = [
@@ -141,14 +142,13 @@ USE_I18N = True
 USE_TZ = True
 
 LOCALE_PATHS = [
-    'locale',
-    os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, 'task_manager', 'locale'),
 ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATICFILES_DIRS = (BASE_DIR.joinpath('static'),)
+STATICFILES_DIRS = (BASE_DIR.joinpath('task_manager', 'static'),)
 
 STATIC_URL = 'static/'
 
